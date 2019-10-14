@@ -3,10 +3,10 @@ import TOMLDecoder
 
 public struct Configuration: Codable {
     var target: String
-    var build: Build
+    var build: Build?
 
     public struct Build: Codable {
-        var extraCxxFlags: [String] = []
+        var extraCxxFlags: [String]?
         var linkerScript: String?
     }
 }
