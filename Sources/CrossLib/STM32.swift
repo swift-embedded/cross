@@ -41,8 +41,11 @@ public class STM32Target: Target {
 
         switch mcu {
         case .STM32F439ZI:
-            cxxFlags += ["-DSTM32F439xx"]
-            swiftcFlags += ["-Xcc", "-DSTM32F439xx"]
+            let cFlags = ["-DSTM32F439xx",
+                          "-D_POSIX_THREADS", "-D_POSIX_READER_WRITER_LOCKS",
+                          "-D_UNIX98_THREAD_MUTEX_ATTRIBUTES", "-D_WANT_REENT_GLOBAL_STDIO_STREAMS"]
+            cxxFlags += cFlags
+            swiftcFlags += cFlags.flatMap { ["-Xcc", $0] }
             arch = .thumbv7m
         }
 
