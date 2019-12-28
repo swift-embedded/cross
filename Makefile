@@ -1,11 +1,11 @@
 prefix ?= /usr/local
 bindir = $(prefix)/bin
-libdir = $(prefix)/lib
 
 build:
 	swift build -c release --disable-sandbox
 
 install: build
+	mkdir -p "$(bindir)"
 	install ".build/release/cross" "$(bindir)"
 
 uninstall:
